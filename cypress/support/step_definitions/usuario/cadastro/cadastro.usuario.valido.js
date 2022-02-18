@@ -16,20 +16,11 @@ let address_data = {streetAddress: Faker.address.streetAddress(),
          postCodeAddress: Faker.datatype.number({min: 10000, max:99999})}
 let phone_mobile = {phone: Faker.phone.phoneNumberFormat(),}   
 
- Given('Acesso a aplicacao', () => {
-     cy.visit('?controller=authentication&back=my-account')
- })
-
- When('Clico para realizar o cadastro', () => {
-     cy.get('.login').click()
-
- })
-
- And('Informo meu email para cadastro' , () => {
+And('informo meu email para cadastro' , () => {
     cy.get('#email_create').type(`${user.email}{enter}`)
  })
 
- And('Preencho todos os dados' , () => {
+ And('preencho todos os dados' , () => {
     cy.url().should('include', '#account-creation') //Assert para validar a mudança da url antes de começar a interagir com os elementos
     cy.get('.page-heading').should('be.visible') //Assert para validar se o texto está aparecendo na página
     cy.get('#email').should('have.value', user.email)
@@ -49,13 +40,13 @@ let phone_mobile = {phone: Faker.phone.phoneNumberFormat(),}
     cy.get('#phone_mobile').type(phone_mobile.phone)
  })
 
- And('Finalizo o cadastro' , () => {
+ And('finalizo o cadastro' , () => {
     cy.get('#submitAccount > span').click()
     cy.get('.account > span').should('have.text', `${user.name.first} ${user.name.last}`)
     cy.get('.info-account').should('be.visible')
  })
 
- Then('O sistema realiza meu cadastro com sucesso me autenticando na pagina' , () => {
+ Then('o sistema realiza meu cadastro com sucesso me autenticando na pagina' , () => {
     cy.get('.account > span').should('have.text', `${user.name.first} ${user.name.last}`)
     cy.get('.info-account').should('be.visible')
 
