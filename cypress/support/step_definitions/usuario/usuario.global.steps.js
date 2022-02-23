@@ -1,14 +1,18 @@
 /// <reference types="cypress" />
 
 /* global Then, When, Given */
+const AutenticacaoPage = require('../../pages/autenticacao.page')
+
+
 
 Given("Acesso a aplicacao", () => {
-  cy.visit("http://automationpractice.com/index.php");
+  AutenticacaoPage.acessoUrl()
 });
 
 When("clico no botao de signin", () => {
-  cy.get(".login").click();
+  AutenticacaoPage.cliqueBtnLogin()
+
 });
 And("clico para realizar o login", () => {
-  cy.get("#SubmitLogin").click();
+  AutenticacaoPage.realizoLogin()
 });
