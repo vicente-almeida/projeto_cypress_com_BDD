@@ -2,21 +2,20 @@
 
 /* global Then, When, Given */
 
+const AutenticacaoPage = require("../../../pages/autenticacao.page")
+
 And("preenchi o campo email com um usuario valido", () => {
   global.usuario.email = "visquinhavipal@gmail.com";
 
-  cy.get("#email").type(global.usuario.email);
+  AutenticacaoPage.emailValido()
 });
 And("preenchi o campo senha com uma senha invalida", () => {
-  cy.get("#passwd").type("111");
+  AutenticacaoPage.insiroSenhaIncorreta()
 });
 And("teclo Enter", () => {
-  cy.get("#passwd").type("{enter}");
+  AutenticacaoPage.tclEnter()
 });
 
 Then("o sistema me notifica que a senha e invalida", () => {
-  cy.get("div.alert.alert-danger")
-    .should("be.visible")
-    .find("ol > li")
-    .should("have.text", "Invalid password.");
+  AutenticacaoPage.notificacaoSenhaInv()
 });

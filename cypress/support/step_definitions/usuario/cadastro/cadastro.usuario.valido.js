@@ -20,6 +20,8 @@ let address_data = {
 };
 let phone_mobile = { phone: Faker.phone.phoneNumberFormat() };
 
+
+
 And("informo meu email para cadastro", () => {
   cy.get("#email_create").type(`${user.email}{enter}`);
 });
